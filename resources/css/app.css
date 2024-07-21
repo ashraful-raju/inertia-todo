@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    .h-main {
+        --navbar-height: 64px;
+        height: calc(100vh - var(--navbar-height));
+    }
+}
