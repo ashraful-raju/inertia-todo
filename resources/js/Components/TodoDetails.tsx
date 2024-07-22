@@ -59,10 +59,8 @@ export default function TodoDetails({
                     />
                 </div>
             ) : (
-                <div className="block">
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {item.title}
-                    </h4>
+                <div className="block text-slate-900 dark:text-white">
+                    <h4 className="text-xl font-bold">{item.title}</h4>
                     <strong className="font-medium">
                         Status: {item.status ? "Completed" : "Incomplete"}
                     </strong>

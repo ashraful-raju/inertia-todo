@@ -23,8 +23,8 @@ export default function Todos({
             mainClass="overflow-hidden overflow-y-auto h-full"
             header={
                 <div className="flex flex-wrap items-center justify-between">
-                    <div className="block w-full sm:w-3/4 mb-2">
-                        <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    <div className="block w-full sm:w-3/4 mb-2 text-gray-800 dark:text-gray-200">
+                        <h2 className="font-semibold text-xl leading-tight">
                             {category.name}
                         </h2>
                         <p className="italic text-xs">{category.description}</p>
