@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -30,6 +31,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        Gate::authorize('hasAccess', $category);
         return Inertia::render('Todos/Index', [
             'category' => $category,
             'tasks' => $category->todos()->authUser()->get()
@@ -41,6 +43,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        Gate::authorize('hasAccess', $category);
         $data = $request->validate([
             'name' => ['required', 'string', 'max:190'],
             'description' => ['nullable', 'string'],
@@ -57,6 +60,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        Gate::authorize('hasAccess', $category);
         $category->delete();
 
         if ($slug = Category::where('id', '>', $category->id)->value('slug')) {

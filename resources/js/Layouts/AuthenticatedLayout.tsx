@@ -18,7 +18,7 @@ export default function Authenticated({
             <section className="flex h-main">
                 <Sidebar show={showSidebar} />
                 <main className={clsx("flex-1 overflow-y-auto", mainClass)}>
-                    <div className="p-6">{header}</div>
+                    {header && <div className="p-6">{header}</div>}
                     {children}
                 </main>
             </section>

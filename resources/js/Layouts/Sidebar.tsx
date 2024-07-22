@@ -12,8 +12,6 @@ export const Sidebar = ({ show }: { show: boolean }) => {
 
     const [showCategoryCreateForm, setShowCategoryCreateForm] = useState(false);
 
-    console.log({ show });
-
     return (
         <aside
             className={clsx(

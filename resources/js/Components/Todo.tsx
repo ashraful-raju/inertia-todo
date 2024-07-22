@@ -1,9 +1,7 @@
 import { Todo } from "@/types";
 import { clsx } from "@/utils";
-import { Link, useForm } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
-import DangerButton from "./DangerButton";
-import PrimaryButton from "./PrimaryButton";
 import TodoActions from "./TodoActions";
 
 export default function TodoItem({ item }: { item: Todo }) {

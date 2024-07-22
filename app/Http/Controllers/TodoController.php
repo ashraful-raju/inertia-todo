@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class TodoController extends Controller
 {
@@ -13,6 +14,7 @@ class TodoController extends Controller
      */
     public function store(Category $category, Request $request)
     {
+        Gate::authorize('hasAccess', $category);
         $data = $request->validate([
             'title' => ['required', 'string'],
             'details' => ['nullable', 'string']
@@ -30,6 +32,7 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+        Gate::authorize('hasAccess', $todo);
         $data = $request->validate([
             'title' => ['sometimes', 'required', 'string'],
             'details' => ['sometimes', 'nullable', 'string'],
@@ -46,6 +49,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
+        Gate::authorize('hasAccess', $todo);
         $slug = $todo->category->slug;
 
         $todo->delete();
