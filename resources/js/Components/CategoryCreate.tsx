@@ -4,9 +4,10 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "./TextInput";
 import { FormEvent } from "react";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import TextareaInput from "./TextareaInput";
 import { Category } from "@/types";
+import DangerButton from "./DangerButton";
 
 export default function CategoryCreate({
     category,
@@ -74,11 +75,30 @@ export default function CategoryCreate({
                 <InputError message={errors.description} className="mt-2" />
             </div>
 
-            <div className="mt-6 flex justify-end">
-                <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
-                <PrimaryButton className="ms-3" disabled={processing}>
-                    Submit
-                </PrimaryButton>
+            <div className="flex items-center justify-between">
+                {category?.id && (
+                    <Link
+                        href={route("categories.destroy", category.id)}
+                        method="delete"
+                        as="span"
+                        onClick={(evt) => {
+                            if (!confirm("Are you sure?")) {
+                                evt.preventDefault();
+                            }
+                        }}
+                        onSuccess={() => closeModal()}
+                    >
+                        <DangerButton>Delete</DangerButton>
+                    </Link>
+                )}
+                <div className="mt-6 flex justify-end">
+                    <SecondaryButton onClick={closeModal}>
+                        Cancel
+                    </SecondaryButton>
+                    <PrimaryButton className="ms-3" disabled={processing}>
+                        Submit
+                    </PrimaryButton>
+                </div>
             </div>
         </form>
     );

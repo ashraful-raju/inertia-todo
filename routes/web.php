@@ -20,12 +20,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/tasks/{category:slug}', 'show')->name('show');
             Route::post('/categories', 'store')->name('store');
             Route::patch('/categories/{category}', 'update')->name('update');
+            Route::delete('/categories/{category}', 'destroy')->name('destroy');
         });
     Route::controller(TodoController::class)
         ->name('todos.')
         ->group(function () {
             Route::post('/category/{category}/todo', 'store')->name('store');
             Route::patch('/todo/{todo}', 'update')->name('update');
+            Route::delete('/todo/{todo}', 'destroy')->name('destroy');
         });
 });
 

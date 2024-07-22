@@ -31,8 +31,9 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         $data = $request->validate([
-            'title' => ['required', 'string'],
-            'details' => ['nullable', 'string']
+            'title' => ['sometimes', 'required', 'string'],
+            'details' => ['sometimes', 'nullable', 'string'],
+            'status' => ['sometimes', 'required', 'boolean']
         ]);
 
         $todo->update($data);
@@ -45,6 +46,10 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $slug = $todo->category->slug;
+
+        $todo->delete();
+
+        return to_route('categories.show', $slug);
     }
 }

@@ -26,7 +26,7 @@ export default function TodoForm({
         evt.preventDefault();
 
         if (todo?.id) {
-            post(route("todos.update", todo.id), {
+            patch(route("todos.update", todo.id), {
                 preserveScroll: true,
                 onSuccess: () => closeModal(),
                 onFinish: () => reset(),
@@ -40,7 +40,7 @@ export default function TodoForm({
         }
     };
     return (
-        <form onSubmit={handleSubmit} className="p-6">
+        <form onSubmit={handleSubmit}>
             <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
                 {`${todo?.id ? "Edit" : "Create"} Todo`}
             </h2>
@@ -79,7 +79,7 @@ export default function TodoForm({
             <div className="mt-6 flex justify-end">
                 <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
                 <PrimaryButton className="ms-3" disabled={processing}>
-                    Add
+                    Submit
                 </PrimaryButton>
             </div>
         </form>

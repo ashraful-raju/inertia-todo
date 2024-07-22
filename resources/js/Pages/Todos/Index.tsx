@@ -66,10 +66,12 @@ export default function Todos({
                 )}
             </div>
             <Modal show={createTodo} onClose={() => setCreateTodo(false)}>
-                <TodoForm
-                    category={category}
-                    closeModal={() => setCreateTodo(false)}
-                />
+                <div className="p-6">
+                    <TodoForm
+                        category={category}
+                        closeModal={() => setCreateTodo(false)}
+                    />
+                </div>
             </Modal>
             <Modal show={edit} onClose={() => setEdit(false)}>
                 <CategoryCreate

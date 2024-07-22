@@ -57,6 +57,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        if ($slug = Category::where('id', '>', $category->id)->value('slug')) {
+            return to_route('categories.show', $slug);
+        }
+        return to_route('dashboard');
     }
 }
