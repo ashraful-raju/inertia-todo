@@ -75,9 +75,10 @@ export default function CategoryCreate({
                 <InputError message={errors.description} className="mt-2" />
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap flex-col-reverse sm:flex-row sm:flex-nowrap items-center sm:items-end justify-between">
                 {category?.id && (
                     <Link
+                        className="justify-end"
                         href={route("categories.destroy", category.id)}
                         method="delete"
                         as="span"
@@ -88,10 +89,10 @@ export default function CategoryCreate({
                         }}
                         onSuccess={() => closeModal()}
                     >
-                        <DangerButton>Delete</DangerButton>
+                        <DangerButton type="button">Delete</DangerButton>
                     </Link>
                 )}
-                <div className="mt-6 flex justify-end">
+                <div className="mt-4 mb-2 sm:mb-0 sm:mt-6 flex flex-wrap justify-end">
                     <SecondaryButton onClick={closeModal}>
                         Cancel
                     </SecondaryButton>

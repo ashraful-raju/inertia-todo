@@ -7,18 +7,23 @@ import { Category } from "@/types";
 import { clsx } from "@/utils";
 import { useState } from "react";
 
-export const Sidebar = () => {
+export const Sidebar = ({ show }: { show: boolean }) => {
     const categories = usePageProps<Category[]>("categories");
 
     const [showCategoryCreateForm, setShowCategoryCreateForm] = useState(false);
 
+    console.log({ show });
+
     return (
         <aside
             className={clsx(
-                "h-full h-main w-64 min-w-64 max-w-64 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"
+                "h-full h-main w-0 sm:w-64 opacity-0 sm:opacity-100 sm:min-w-64 sm:max-w-64 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 transition-all duration-200 -translate-x-full sm:translate-x-0",
+                show
+                    ? "!translate-x-0 !opacity-100 !w-64 fixed top-16 left-0"
+                    : ""
             )}
         >
-            <div className="flex flex-col w-full h-full">
+            <div className="flex flex-col w-full h-full pb-16 sm:pb-0">
                 <div className="pt-2 pb-3 flex-1 space-y-1 overflow-hidden overflow-y-auto">
                     <ResponsiveNavLink
                         href={route("dashboard")}

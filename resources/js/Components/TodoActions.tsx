@@ -8,7 +8,7 @@ export default function TodoActions({ item }: { item: Todo }) {
     const [showDetails, setShowDetails] = useState(false);
 
     return (
-        <div className="items-center flex opacity-0 group-hover:opacity-100 transition-all gap-x-1 duration-300 mr-2">
+        <div className="items-center flex sm:opacity-0 sm:group-hover:opacity-100 transition-all gap-x-1 duration-300 mr-2">
             <button
                 onClick={() => setShowDetails(true)}
                 className="border border-blue-600 bg-blue-600 p-1 rounded-lg text-white hover:bg-blue-700 transition-all duration-300"
@@ -33,6 +33,7 @@ export default function TodoActions({ item }: { item: Todo }) {
             </button>
             <Link
                 method="delete"
+                as="button"
                 className="border border-red-600 bg-red-600 p-1 rounded-lg text-white hover:bg-red-700 transition-all duration-300"
                 href={route("todos.destroy", item.id)}
                 onClick={(evt) => {

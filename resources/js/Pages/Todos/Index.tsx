@@ -22,14 +22,14 @@ export default function Todos({
             user={auth.user}
             mainClass="overflow-hidden overflow-y-auto h-full"
             header={
-                <div className="flex items-center justify-between">
-                    <div className="block w-3/4">
+                <div className="flex flex-wrap items-center justify-between">
+                    <div className="block w-full sm:w-3/4 mb-2">
                         <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             {category.name}
                         </h2>
                         <p className="italic text-xs">{category.description}</p>
                     </div>
-                    <div className="flex gap-x-1 items-center">
+                    <div className="flex flex-wrap gap-1 items-center">
                         <SecondaryButton
                             onClick={() => setEdit(true)}
                             className="w-auto"

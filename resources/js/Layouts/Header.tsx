@@ -5,21 +5,41 @@ import { usePageProps } from "@/hooks";
 import { User } from "@/types";
 import { Link } from "@inertiajs/react";
 
-export const Header = () => {
+export const Header = ({ toggleClick }: { toggleClick: () => void }) => {
     const user = usePageProps<User>("auth.user");
+
     return (
         <header className="w-full h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex">
-                        <div className="shrink-0 flex items-center">
+                    <div className="flex items-center justify-start">
+                        <button
+                            onClick={toggleClick}
+                            className="text-gray-500 focus:outline-none sm:hidden"
+                        >
+                            <svg
+                                className="w-6 h-6 mr-1"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M4 6H20M4 12H20M4 18H11"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </button>
+                        <div className="shrink-0 flex items-start">
                             <Link href="/">
                                 <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                             </Link>
                         </div>
                     </div>
 
-                    <div className="hidden sm:flex sm:items-center sm:ms-6">
+                    <div className="flex items-center ms-6">
                         <div className="ms-3 relative">
                             <Dropdown>
                                 <Dropdown.Trigger>
