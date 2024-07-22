@@ -41,7 +41,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:190'],
+            'description' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
+        ]);
+
+        $category->update($data);
+
+        return to_route('categories.show', $category->slug);
     }
 
     /**

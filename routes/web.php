@@ -19,6 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->group(function () {
             Route::get('/tasks/{category:slug}', 'show')->name('show');
             Route::post('/categories', 'store')->name('store');
+            Route::patch('/categories/{category}', 'update')->name('update');
         });
     Route::controller(TodoController::class)
         ->name('todos.')

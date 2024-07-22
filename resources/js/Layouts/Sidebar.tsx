@@ -15,11 +15,11 @@ export const Sidebar = () => {
     return (
         <aside
             className={clsx(
-                "h-full w-64 min-w-64 max-w-64 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"
+                "h-full h-main w-64 min-w-64 max-w-64 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"
             )}
         >
             <div className="flex flex-col w-full h-full">
-                <div className="pt-2 pb-3 flex-1 space-y-1">
+                <div className="pt-2 pb-3 flex-1 space-y-1 overflow-hidden overflow-y-auto">
                     <ResponsiveNavLink
                         href={route("dashboard")}
                         active={route().current("dashboard")}

@@ -5,23 +5,36 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "./TextInput";
 import { FormEvent } from "react";
 import { useForm } from "@inertiajs/react";
+import TextareaInput from "./TextareaInput";
+import { Category } from "@/types";
 
 export default function CategoryCreate({
+    category,
     closeModal,
 }: {
+    category?: Category;
     closeModal: () => void;
 }) {
-    const { data, setData, post, processing, reset, errors } = useForm({
-        name: "",
+    const { data, setData, post, patch, processing, reset, errors } = useForm({
+        name: category?.name ?? "",
+        description: category?.description ?? "",
     });
     const handleSubmit = (evt: FormEvent) => {
         evt.preventDefault();
 
-        post(route("categories.store"), {
-            preserveScroll: true,
-            onSuccess: () => closeModal(),
-            onFinish: () => reset(),
-        });
+        if (category?.id) {
+            patch(route("categories.update", category.id), {
+                preserveScroll: true,
+                onSuccess: () => closeModal(),
+                onFinish: () => reset(),
+            });
+        } else {
+            post(route("categories.store"), {
+                preserveScroll: true,
+                onSuccess: () => closeModal(),
+                onFinish: () => reset(),
+            });
+        }
     };
     return (
         <form onSubmit={handleSubmit} className="p-6">
@@ -44,11 +57,27 @@ export default function CategoryCreate({
 
                 <InputError message={errors.name} className="mt-2" />
             </div>
+            <div className="mt-6">
+                <InputLabel
+                    htmlFor="description"
+                    value="Name"
+                    className="sr-only"
+                />
+                <TextareaInput
+                    id="description"
+                    name="description"
+                    value={data.description}
+                    onChange={(e) => setData("description", e.target.value)}
+                    className="mt-1 block w-full"
+                    placeholder="Write something..."
+                />
+                <InputError message={errors.description} className="mt-2" />
+            </div>
 
             <div className="mt-6 flex justify-end">
                 <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
                 <PrimaryButton className="ms-3" disabled={processing}>
-                    Add
+                    Submit
                 </PrimaryButton>
             </div>
         </form>

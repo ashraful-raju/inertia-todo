@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/react";
 export const Header = () => {
     const user = usePageProps<User>("auth.user");
     return (
-        <header className="w-full h-16 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0">
+        <header className="w-full h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">

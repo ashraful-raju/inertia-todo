@@ -7,4 +7,26 @@
         --navbar-height: 64px;
         height: calc(100vh - var(--navbar-height));
     }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+
+    ::-webkit-scrollbar {
+        background: hsla(0, 0%, 100%, 0.2);
+        position: absolute;
+        width: 4px;
+    }
+
+    ::-webkit-scrollbar:hover {
+        display: block;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #bcbcbd;
+    }
+
+    ::-webkit-scrollbar:horizontal {
+        height: 4px;
+    }
 }

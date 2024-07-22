@@ -6,6 +6,8 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import { useState } from "react";
 import Modal from "@/Components/Modal";
 import TodoForm from "@/Components/TodoForm";
+import SecondaryButton from "@/Components/SecondaryButton";
+import CategoryCreate from "@/Components/CategoryCreate";
 
 export default function Todos({
     auth,
@@ -13,6 +15,7 @@ export default function Todos({
     category,
 }: PageProps<{ category: Category; tasks: Todo[] }>) {
     const [createTodo, setCreateTodo] = useState(false);
+    const [edit, setEdit] = useState(false);
 
     return (
         <AuthenticatedLayout
@@ -26,14 +29,22 @@ export default function Todos({
                         </h2>
                         <p className="italic text-xs">{category.description}</p>
                     </div>
-                    {tasks.length > 0 && (
-                        <PrimaryButton
-                            onClick={() => setCreateTodo(true)}
+                    <div className="flex gap-x-1 items-center">
+                        <SecondaryButton
+                            onClick={() => setEdit(true)}
                             className="w-auto"
                         >
-                            Create new
-                        </PrimaryButton>
-                    )}
+                            Edit Category
+                        </SecondaryButton>
+                        {tasks.length > 0 && (
+                            <PrimaryButton
+                                onClick={() => setCreateTodo(true)}
+                                className="w-auto"
+                            >
+                                Create Todo
+                            </PrimaryButton>
+                        )}
+                    </div>
                 </div>
             }
         >
@@ -58,6 +69,12 @@ export default function Todos({
                 <TodoForm
                     category={category}
                     closeModal={() => setCreateTodo(false)}
+                />
+            </Modal>
+            <Modal show={edit} onClose={() => setEdit(false)}>
+                <CategoryCreate
+                    category={category}
+                    closeModal={() => setEdit(false)}
                 />
             </Modal>
         </AuthenticatedLayout>
