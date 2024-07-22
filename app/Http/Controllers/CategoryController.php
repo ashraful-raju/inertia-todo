@@ -34,7 +34,7 @@ class CategoryController extends Controller
         Gate::authorize('hasAccess', $category);
         return Inertia::render('Todos/Index', [
             'category' => $category,
-            'tasks' => $category->todos()->authUser()->get()
+            'tasks' => $category->todos()->authUser()->orderBy('status')->get()
         ]);
     }
 
